@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars Intro</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background-color: black;
+            color: white;
+        }
+        .star-wars-intro {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(25deg);
+            transform-origin: 50% 100%;
+            font-size: 1.5em;
+            perspective: 400px;
+            height: 100%;
+            width: 80%;
+        }
+        .crawl {
+            position: absolute;
+            top: 100%;
+            animation: crawl 60s linear infinite;
+        }
+        @keyframes crawl {
+            0% {
+                top: 100%;
+            }
+            100% {
+                top: -200%;
+            }
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .control-btn {
+            background-color: #333;
+            border: none;
+            color: yellow;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .control-btn:hover {
+            background-color: #555;
+        }
+        @media (max-width: 600px) {
+            .star-wars-intro {
+                font-size: 1em;
+            }
+            .control-btn {
+                padding: 5px 10px;
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="star-wars-intro">
+        <div class="crawl" id="crawl">
+            <p>원정아 24번째 생일을 정말 축하해. 그거알아? 우리 사귄지 벌써 1045일이야 시간 정말 빠르다 그치?</p>
+            <p>막상 편지로 마음을 표현하는 게 자주 해본 일이 아니라서 부끄럽고 막상 적기 힘들기도 하지만 이런 방식은 처음일거야 훗...ㅋ</p>
+            <p>이왕 하는거 내 마음을 쭈욱 적어볼게</p>
+            <p>요즘 난 걱정이 참 많아.왜냐하면 너가 계속해서 이뻐지고 있기 때문이야!</p>
+            <p>난 이렇게 늙고 일만하는 아저씨가 되어가는데 원정이는 계속 이뻐지기만 하네ㅋㅋㅋ...</p>
+            <p>예전 쟈기가 내 생일 편지에 적었던 내용 중에 기억에 남는 말이 있어.</p>
+            <p>편지에 이렇게 적혀있더라고, “이젠 오빠가 없는 건 상상도 잘 안가고 상상하기도 싫어”</p>
+            <p>나도 완전 그래... 요즘 내가 설계하는 미래 속에는 항상 너가 함께 있거든.</p>
+            <p>그리고 너랑 자주 만나서 놀면 참 좋은데 그렇게 놀면 놀수록 쟈기와 함께하는 시기(합치는 것!)가 조금씩 늦춰지는 것 같아서 걱정아닌 걱정을 하기도 해.</p>
+            <p>쓰고보니 걱정이 참 많은 남자친구같네 ㅋㅋㅋ</p>
+            <p>그래도 난 예쁜 여자친구가 있어서 좋고 그런 쟈기랑 같이 미래를 그리고 있다는 게 행복해.</p>
+            <p>아! 그리고 하소연도 좀 할게. 생일이면 갖고 싶은 걸 좀 찾고 필요한 것 좀 말해줘!!</p>
+            <p>내가 진짜 억울해서 그런다. 첫 해엔 카메라 사줬더니 애들이 선수치고...</p>
+            <p>작년에도 좀 팍팍 사줄라니까 쪼만한거 두개 고르고... 머야 이게!!ㅋㅋㅋ</p>물론 맥북은 후… 오빠가 게을러서 미안하다… 진짜 그렇게 사주고 싶은데 참…</p>
+            <p>다음 해엔 내가 노력해볼게 쟉히. 매해마다 쟈기 생일선물 주는게 뭔가 시원하게 준 적이 없었던 거 같아서 하소연 해봤어.</p>
+            <p>원정아 요즘 많이 바쁘고 힘들지? 오늘도 피곤해서 학원도 못가고 잠자는 거 보면 마음이 약간 안좋네..ㅠㅠ</p>
+            <p>시험 끝날 때까지 조금만 더 힘내요. 끝나면 여행가서 우리 맛있는 거 먹으러 가자.</p><p>이 편지도 쟉히가 피로도 풀겸 재미있게 봐줬으면 좋겠다.</p>
+            <p>24번째 생일 진심으로 축하해. <p>태어나줘서 고마워.</p> <p>사랑해 원정아❤️</p>
+            <p>벱비가 없으면 죽는 수현이가</p>
+        </div>
+    </div>
+    <audio id="background-music" src="./music.mp3" loop></audio>
+    <div class="controls">
+        <button class="control-btn" id="pauseBtn">일시정지</button>
+        <button class="control-btn" id="playBtn">재생</button>
+    </div>
+
+    <script>
+        const crawl = document.getElementById('crawl');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const playBtn = document.getElementById('playBtn');
+        const backgroundMusic = document.getElementById('background-music');
+        crawl.style.animationPlayState = 'paused';
+        backgroundMusic.play();
+
+        pauseBtn.addEventListener('click', () => {
+            crawl.style.animationPlayState = 'paused';
+            backgroundMusic.pause();
+        });
+
+        playBtn.addEventListener('click', () => {
+            crawl.style.animationPlayState = 'running';
+            backgroundMusic.play();
+        });
+    </script>
+</body>
+</html>
